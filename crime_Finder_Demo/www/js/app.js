@@ -32,11 +32,10 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
 
 
        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
-         console.log(json);
+        //  console.log(json);
 
            var lat  = position.coords.latitude;
            var long = position.coords.longitude;
-           var percentage = 0; 
 
            var myLatlng = new google.maps.LatLng(lat, long);
 
@@ -51,20 +50,20 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
             ['Me', 45.5040136,-73.6133872],
             ['You',40.758895,-73.985131]
           ];
-          var json = (function () {
-            var json = null;
-            $.ajax({
-                'async': false,
-                'global': false,
-                'url': "../subset_test.json",
-                'dataType': "json",
-                'success': function (data) {
-                    json = data;
-                }
-            });
-            return json;
-          })();
-          var markers = [[json.A0.CATEGORIE,  45.5040136,-73.6133872]]
+          // var json = (function () {
+          //   var json = null;
+          //   $.ajax({
+          //       'async': false,
+          //       'global': false,
+          //       'url': "../subset_test.json",
+          //       'dataType': "json",
+          //       'success': function (data) {
+          //           json = data;
+          //       }
+          //   });
+          //   return json;
+          // })();
+          // var markers = [[json.A0.CATEGORIE,  45.5040136,-73.6133872]]
           // console.log(json);
           // var A0 = json.A0;
           // var markers = [A0.CATEGORIE, A0.LAT, A0.LONG];
@@ -101,7 +100,6 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               });
               addInfoWindow(marker, marker.title);
           }
-          document.getElementById("percentage").innerHTML = percentage.toString(); 
 
           function addInfoWindow(marker, message) {
 
@@ -114,6 +112,8 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               });
 
           }
+          var percentage = 0;
+          document.getElementById("percentage").innerHTML = percentage.toString();
            $scope.map = map;
            $ionicLoading.hide();
 
