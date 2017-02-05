@@ -31,13 +31,11 @@
   <div id="info-box" class="card">
     <div class="item item-text-wrap">
       <div class="container">
-      <img src ="/android_asset/www/img/ic_lightbulb_outline_black_24dp.png" style="float:left;padding-right:5%;padding-top:1%;">
+      <img src="/android_asset/www/img/ic_lightbulb_outline_black_24dp.png" style="float:left;padding-right:5%;padding-top:1%;">
             <div ng-show="isDetailOpen">
       <p>Crime Watch is an app to raise awareness against crimes, while reminding you to stay vigilant.</p>
       </div>
-      <button ng-click="isDetailOpen = !isDetailOpen"
-        ng-class="!isDetailOpen ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'"
-        class="button button-clear button-positive icon-right">
+      <button ng-click="isDetailOpen = !isDetailOpen" ng-class="!isDetailOpen ? 'ion-ios-arrow-down' : 'ion-ios-arrow-up'" class="button button-clear button-positive icon-right">
         <span ng-show="!isDetailOpen">About this app</span>
         <span ng-show="isDetailOpen">Less Detail</span>
         </button> 
@@ -49,7 +47,7 @@
         <ion-content ng-controller="MapController" scroll="false">
             <div id="map" data-tap-disabled="true"></div>
         </ion-content>
-    </ion-pane>
+    </div></ion-pane>
 
     <script src="https://maps-api-ssl.google.com/maps/api/js?libraries=places"></script>
 
