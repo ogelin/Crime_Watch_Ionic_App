@@ -14,6 +14,7 @@ Many of the exceptions have yet to be implemented; if you do not have internet a
 Once you have the dependencies set up, you can run our project on a phone or emulator using:
 
 For Android:
+
 `cordova build android`
 
 `cordova run android`
