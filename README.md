@@ -15,11 +15,13 @@ Once you have the dependencies set up, you can run our project on a phone or emu
 
 For Android:
 `cordova build android`
+
 `cordova run android`
 
 For iOS:
 
 `cordova build ios`
+
 `cordova run ios`
 
 # Using your own dataset
