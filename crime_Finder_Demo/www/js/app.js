@@ -18,7 +18,9 @@ app.run(function($ionicPlatform) {
 });
 app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform) {
 
+
    $ionicPlatform.ready(function() {
+
 
        $ionicLoading.show({
            template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!!'
@@ -31,6 +33,7 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
        };
 
 
+
        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
         //  console.log(json);
 
@@ -41,44 +44,92 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
 
            var mapOptions = {
                center: myLatlng,
-               zoom: 16,
+               zoom: 15,
+               styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ],
                mapTypeId: google.maps.MapTypeId.ROADMAP
            };
           var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
 
-
-          // var markers = [[json.A0.CATEGORIE,  45.5040136,-73.6133872]]
-          // console.log(json);
-          // var A0 = json.A0;
-          // var markers = [A0.CATEGORIE, A0.LAT, A0.LONG];
-
-          // $.getJSON("../subset_test.json", function(result){
-            // var A0 = result.A0;
-            // console.log("APPJS");
-          //   console.log(A0);
-          //   // $.getJSON('example.json', function (data) {
-          //     console.log(result);
-          //   // });
-          // });
-          // var markers = [A0.CATEGORIE, A0.LAT, A0.LONG];
-          // console.log(markers);
-          // var markers=[];
-          // var data = $.getJSON("subset_test.json", function(data)){
-              // return data;
-            // })
-          // };
-          // var markers = [];
-          // data.forEach(function(object){
-              // markers.push([object.CATEGORIE,object.LAT, object.LONG]);
-          // });
-          // console.log(markers);
-          // var markers = $.map(data, function(el) { return el; })
-
-          // var markers = [
-          //   ['Me', 45.5040136,-73.6133872],
-          //   ['You',40.758895,-73.985131]
-          // ];
           var markers = (function () {
             var json = null;
             $.ajax({
@@ -97,7 +148,7 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               marker = new google.maps.Marker({
                   position: position,
                   map: map,
-                  title: markers[i][0] + ": " + markers[i][5] + " " + markers[i][4],
+                  title: "There was a " + markers[i][0].toLowerCase() + " nearby during " + markers[i][5] + " " + markers[i][4] +".",
                   animation: google.maps.Animation.DROP,
                   optimized: false
               });
@@ -115,8 +166,7 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               });
 
           }
-          var percentage = 0;
-          document.getElementById("percentage").innerHTML = percentage.toString();
+
            $scope.map = map;
            $ionicLoading.hide();
 
@@ -125,4 +175,6 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
            console.log(err);
        });
    });
+   
+
 });
