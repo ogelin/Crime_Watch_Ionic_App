@@ -34,6 +34,7 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
            var lat  = position.coords.latitude;
            var long = position.coords.longitude;
+           var percentage = 0; 
 
            var myLatlng = new google.maps.LatLng(lat, long);
 
@@ -60,6 +61,10 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               addInfoWindow(marker, marker.title);
           }
 
+
+          document.getElementById("percentage").innerHTML = percentage.toString(); 
+
+
           function addInfoWindow(marker, message) {
 
               var infoWindow = new google.maps.InfoWindow({
@@ -71,11 +76,6 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
               });
 
           }
-
-
-
-
-
            $scope.map = map;
            $ionicLoading.hide();
 
