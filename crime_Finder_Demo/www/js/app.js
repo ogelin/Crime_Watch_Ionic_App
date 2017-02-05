@@ -84,7 +84,7 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
             $.ajax({
                 'async': false,
                 'global': false,
-                'url':"/android_asset/www/subset_test.json",
+                'url':"/android_asset/www/sample1000.json",
                 'dataType': "json",
                 'success': function (data) {
                     json = data;
@@ -93,11 +93,12 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
             return json;
           })();
           for( i = 0; i < markers.length; i++ ) {
-              var position = new google.maps.LatLng(markers[i][6], markers[i][7]);
+              var position = new google.maps.LatLng(markers[i][2], markers[i][3]);
               marker = new google.maps.Marker({
                   position: position,
                   map: map,
-                  title: markers[i][0],
+                  title: markers[i][0] + ": " + markers[i][5] + " " + markers[i][4],
+                  animation: google.maps.Animation.DROP,
                   optimized: false
               });
               addInfoWindow(marker, marker.title);
