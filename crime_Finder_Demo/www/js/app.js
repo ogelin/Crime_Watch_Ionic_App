@@ -46,23 +46,8 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
            };
           var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-          var markers = [
-            ['Me', 45.5040136,-73.6133872],
-            ['You',40.758895,-73.985131]
-          ];
-          // var json = (function () {
-          //   var json = null;
-          //   $.ajax({
-          //       'async': false,
-          //       'global': false,
-          //       'url': "../subset_test.json",
-          //       'dataType': "json",
-          //       'success': function (data) {
-          //           json = data;
-          //       }
-          //   });
-          //   return json;
-          // })();
+
+
           // var markers = [[json.A0.CATEGORIE,  45.5040136,-73.6133872]]
           // console.log(json);
           // var A0 = json.A0;
@@ -89,9 +74,26 @@ app.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoad
           // });
           // console.log(markers);
           // var markers = $.map(data, function(el) { return el; })
-          for( i = 0; i < markers.length; i++ ) {
 
-              var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+          // var markers = [
+          //   ['Me', 45.5040136,-73.6133872],
+          //   ['You',40.758895,-73.985131]
+          // ];
+          var markers = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url':"/android_asset/www/subset_test.json",
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+          })();
+          for( i = 0; i < markers.length; i++ ) {
+              var position = new google.maps.LatLng(markers[i][6], markers[i][7]);
               marker = new google.maps.Marker({
                   position: position,
                   map: map,
