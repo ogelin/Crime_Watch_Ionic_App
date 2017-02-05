@@ -14,13 +14,13 @@ Many of the exceptions have yet to be implemented; if you do not have internet a
 Once you have the dependencies set up, you can run our project on a phone or emulator using:
 
 For Android:
-$$ cordova build android
-$$ cordova run android
+`cordova build android`
+`cordova run android`
 
 For iOS:
 
-$ cordova build ios
-$ cordova run ios
+`cordova build ios`
+`cordova run ios`
 
 # Using your own dataset
 For both Android and iOS, you can place your own dataset in the format of a doubly linked list. It should be of the format [["Nature of crime", "Date of crime", Latitude, Longitude, Year, Month]].
