@@ -11,5 +11,16 @@ Since this application does require quite a few permissions, we demoed it using 
 
 Many of the exceptions have yet to be implemented; if you do not have internet access for example, the application will not work. If you are using Android, make sure it is in development mode and accepts the USB debugging connection.
 
+Once you have the dependencies set up, you can run our project on a phone or emulator using:
+
+For Android:
+$ cordova build android
+$ cordova run android
+
+For iOS:
+
+$ cordova build ios
+$ cordova run ios
+
 # Using your own dataset
 For both Android and iOS, you can place your own dataset in the format of a doubly linked list. It should be of the format [["Nature of crime", "Date of crime", Latitude, Longitude, Year, Month]].
